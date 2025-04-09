@@ -178,8 +178,8 @@ created_at TIMESTAMPTZ
 - Use status + usage_policy to enforce protection layers
 
 ## 🧭 Roadmap Features (Not in First Version)
-🔗 Artifact Relationships (dependencies)
-🪪 Per-artifact access control (ACL/RBAC)
-🧠 Graph-based dependency visualization
-🪄 Template-based artifact creation
-📊 Usage statistics + access logs
+- 🔗 Artifact Relationships (dependencies)
+- 🪪 Per-artifact access control (ACL/RBAC)
+- 🧠 Graph-based dependency visualization
+- 🪄 Template-based artifact creation
+- 📊 Usage statistics + access logs
