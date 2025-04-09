@@ -88,7 +88,7 @@ types:
     validator:
       url: https://secure-validator.internal/sast-check
       method: POST
-
+```
 ---
 
 ## 📚 Schema (PostgreSQL)
