@@ -124,17 +124,33 @@ created_at TIMESTAMPTZ
 ```
 
 ## 🛠️ REST API
-| Endpoint                                | Method | Description                               |
-|-----------------------------------------|--------|-------------------------------------------|
-| `/artifacts/`                           | GET    | List all artifacts (for user’s group)     |
-| `/artifacts/{name}`                     | GET    | Get latest version                        |
-| `/artifacts/{name}/{version}`           | GET    | Get specific version                      |
-| `/artifacts/`                           | POST   | Submit artifact (triggers validation)     |
-| `/artifacts/{name}/versions`            | GET    | List all versions                         |
-| `/artifacts/{name}/{version}/meta`      | PATCH  | Update metadata                           |
-| `/artifacts/{name}/{version}/rollback`  | POST   | Rollback to prior                         |
-| `/artifacts/cleanup`                    | POST   | Suggest cleanup based on TTL              |
 
+| Method | Endpoint                                               | Description                                                 |
+|--------|--------------------------------------------------------|-------------------------------------------------------------|
+| GET    | `/artifacts/`                                          | List artifacts for user's group (with filters + pagination) |
+| GET    | `/artifacts/{name}`                                    | Get **latest published** version                            |
+| GET    | `/artifacts/{name}/latest`                             | Get latest version (any status)                             |
+| GET    | `/artifacts/{name}/{version}`                          | Get specific version                                        |
+| GET    | `/artifacts/{name}/versions`                           | List all versions                                           |
+| POST   | `/artifacts/`                                          | Submit new artifact (triggers validation)                   |
+| PATCH  | `/artifacts/{name}/{version}/meta`                     | Update metadata for version                                 |
+| POST   | `/artifacts/{name}/{version}/publish`                  | Publish version                                             |
+| POST   | `/artifacts/{name}/{version}/unpublish`                | Unpublish version                                           |
+| POST   | `/artifacts/{name}/{version}/archive`                  | Archive version                                             |
+| DELETE | `/artifacts/{name}/{version}`                          | Soft-delete version                                         |
+| POST   | `/artifacts/{name}/{version}/rollback`                 | Rollback to previous version                                |
+| GET    | `/artifacts/{name}/{version}/diff?against=1.2.3`       | Show diff between two versions                              |
+| POST   | `/artifacts/cleanup`                                   | Suggest artifacts for cleanup based on TTL                  |
+
+### 🔍 Query Parameters for `GET /artifacts/`
+
+| Parameter | Description                                               |
+|-----------|-----------------------------------------------------------|
+| `type`    | Filter by artifact type (e.g., `plugin`, `prompt`)        |
+| `status`  | Filter by lifecycle status (e.g., `published`)            |
+| `tags`    | Comma-separated tag filter (e.g., `core,ai`)              |
+| `page`    | Page number for pagination                                |
+| `limit`   | Page size (number of items to return, e.g., `20`)         |
 
 ## 🔧 Tech Stack
 | Layer       | Stack                                         |
