@@ -93,33 +93,35 @@ types:
 
 ## 📚 Schema (PostgreSQL)
 
-Table: artifact_active
-  id UUID PRIMARY KEY
-  name TEXT NOT NULL
-  type TEXT NOT NULL
-  version TEXT NOT NULL
-  group_id TEXT NOT NULL
-  status TEXT CHECK (status IN ('draft', 'on_verification', 'published', 'archived', 'blocked'))
-  content BYTEA
-  json_content JSONB
-  metadata JSONB
-  tags JSONB
-  category TEXT
-  description TEXT
-  created_at TIMESTAMPTZ
-  updated_at TIMESTAMPTZ
-  last_accessed_at TIMESTAMPTZ
-  content_hash TEXT
-  usage_policy TEXT
+```sql
+-- Table: artifact_active
+id UUID PRIMARY KEY,
+name TEXT NOT NULL,
+type TEXT NOT NULL,
+version TEXT NOT NULL,
+group_id TEXT NOT NULL,
+status TEXT CHECK (status IN ('draft', 'on_verification', 'published', 'archived', 'blocked')),
+content BYTEA,
+json_content JSONB,
+metadata JSONB,
+tags JSONB,
+category TEXT,
+description TEXT,
+created_at TIMESTAMPTZ,
+updated_at TIMESTAMPTZ,
+last_accessed_at TIMESTAMPTZ,
+content_hash TEXT,
+usage_policy TEXT
 
-Table: artifact_history (same fields + original_id UUID)
+-- Table: artifact_history (same fields + original_id UUID)
 
-Table: artifact_events
-  id UUID PRIMARY KEY
-  artifact_id UUID
-  event_type TEXT  -- "created", "published", "blocked", etc.
-  event_data JSONB
-  created_at TIMESTAMPTZ
+-- Table: artifact_events
+id UUID PRIMARY KEY,
+artifact_id UUID,
+event_type TEXT,       -- "created", "published", "blocked", etc.
+event_data JSONB,
+created_at TIMESTAMPTZ
+```
 
 ## 🛠️ REST API
 | Endpoint                                | Method | Description                               |
