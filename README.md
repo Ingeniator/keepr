@@ -166,14 +166,16 @@ created_at TIMESTAMPTZ
 | Deployment  | Docker + Helm                                 |
 
 ## 📡 Webhooks (Optional)
-Trigger on: published, blocked, rollback
-Send payload to pre-configured system
-Use background tasks or Celery
+
+- Trigger on: published, blocked, rollback
+- Send payload to pre-configured system
+- Use background tasks or Celery
 
 ## 🚫 Usage Constraints
-Only published artifacts are executable or queryable by consumers
-blocked, on_verification artifacts are not usable even if accessible
-Use status + usage_policy to enforce protection layers
+
+- Only published artifacts are executable or queryable by consumers
+- blocked, on_verification artifacts are not usable even if accessible
+- Use status + usage_policy to enforce protection layers
 
 ## 🧭 Roadmap Features (Not in First Version)
 🔗 Artifact Relationships (dependencies)
